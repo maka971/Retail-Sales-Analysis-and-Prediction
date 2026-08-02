@@ -40,11 +40,11 @@
 
 | Correlation Heatmap | Actual vs. Predicted Sales |
 |:---:|:---:|
-| ![Correlation Heatmap](images/correlation-heatmap.png) | ![Actual vs Predicted](images/actual-vs-predicted.png) |
+| ![Correlation Heatmap](correlation-heatmap.png) | ![Actual vs Predicted](actual-vs-predicted.png) |
 
 | Box Plot of Sales Amount | Pair Plot of Numeric Features |
 |:---:|:---:|
-| ![Box Plot](images/box-plot.png) | ![Pair Plot](images/pair-plot.png) |
+| ![Box Plot](box-plot.png) | ![Pair Plot](pair-plot.png) |
 
 </div>
 
@@ -82,7 +82,7 @@ Retail-Sales-Analysis-and-Prediction/
 │
 ├── retail_sales_dataset.xls                                    # Raw dataset (120,000 rows, 17 columns)
 ├── Retail Sales Analysis and Prediction_pythone_project.csv.ipynb   # Full analysis notebook
-├── images/
+├── 
 │   ├── correlation-heatmap.png
 │   ├── actual-vs-predicted.png
 │   ├── box-plot.png
@@ -145,17 +145,17 @@ Retail-Sales-Analysis-and-Prediction/
 
 **Correlation Heatmap**
 
-![Correlation Heatmap](images/correlation-heatmap.png)
+![Correlation Heatmap](correlation-heatmap.png)
 *`quantity` and `unit_price` each correlate moderately with `sales_amount` (0.64), while `discount_pct` shows a slight negative correlation (-0.09) — confirming discounts aren't a major revenue driver.*
 
 **Pair Plot of Numeric Features**
 
-![Pair Plot](images/pair-plot.png)
+![Pair Plot](pair-plot.png)
 *Visualizing the pairwise relationships between `quantity`, `unit_price`, `discount_pct`, and `sales_amount` — the diagonal "fan" pattern in the `unit_price` vs. `sales_amount` plot reflects the multiplicative relationship between price, quantity, and discount.*
 
 **Box Plot of Sales Amount**
 
-![Box Plot](images/box-plot.png)
+![Box Plot](box-plot.png)
 *The distribution of `sales_amount` is right-skewed with a long tail of high-value transactions — expected in retail, where most purchases are low-to-mid value with occasional large basket sizes.*
 
 ### 3. Predictive Modeling
@@ -303,7 +303,7 @@ plt.show()
 
 **Result:**
 
-![Actual vs Predicted](images/actual-vs-predicted.png)
+![Actual vs Predicted](actual-vs-predicted.png)
 *Actual vs. Predicted sales amount, with the red dashed line representing a perfect prediction. The model captures the general upward trend but underpredicts at the high end — a sign that a purely linear model can't fully capture how `quantity`, `unit_price`, and `discount_pct` interact.*
 
 **Why Linear Regression as a baseline?**

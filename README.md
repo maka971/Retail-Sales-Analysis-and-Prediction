@@ -1,6 +1,54 @@
-# 🛒 Retail Sales Analysis & Prediction
+<div align="center">
 
-> **End-to-end data science project** covering data cleaning, exploratory data analysis, customer segmentation, and sales prediction using Linear Regression — applied to a real-world retail dataset of **120,000 transactions**.
+# 🛒 Retail Sales Analysis & Prediction
+### Python · Pandas · Scikit-learn · EDA · Machine Learning
+
+**End-to-end data science project covering data cleaning, exploratory data analysis, customer segmentation, and sales prediction using Linear Regression — applied to 120,000 real-world retail transactions.**
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white)
+![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white)
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mutyaba-sulah-525510203/)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/maka971)
+
+</div>
+
+---
+
+## 📑 Table of Contents
+
+- [📸 Analysis Preview](#-analysis-preview)
+- [📌 Project Overview](#-project-overview)
+- [📁 Repository Structure](#-repository-structure)
+- [📊 Dataset Overview](#-dataset-overview)
+- [🔍 Analysis Workflow](#-analysis-workflow)
+- [💡 Key Findings](#-key-findings)
+- [🤖 Machine Learning — Sales Prediction](#-machine-learning--sales-prediction)
+- [🛠️ Tech Stack](#️-tech-stack)
+- [🚀 How to Run](#-how-to-run)
+- [📈 Skills Demonstrated](#-skills-demonstrated)
+- [👨‍💻 About the Author](#-about-the-author)
+
+---
+
+## 📸 Analysis Preview
+
+<div align="center">
+
+| Correlation Heatmap | Actual vs. Predicted Sales |
+|:---:|:---:|
+| ![Correlation Heatmap](images/correlation-heatmap.png) | ![Actual vs Predicted](images/actual-vs-predicted.png) |
+
+| Box Plot of Sales Amount | Pair Plot of Numeric Features |
+|:---:|:---:|
+| ![Box Plot](images/box-plot.png) | ![Pair Plot](images/pair-plot.png) |
+
+</div>
+
+> A quick look at the core visuals from the notebook before diving into the full analysis below.
 
 ---
 
@@ -17,13 +65,28 @@ Retail businesses generate massive volumes of transactional data every day. The 
 | 5 | Which sales channels perform best? | Channel comparison |
 | 6 | Where is demand highest geographically? | Regional analysis |
 
+### ✨ Project Highlights
+
+- 🧹 Cleaned and validated **120,000 transactions** across 17 columns with zero missing values
+- 📊 Ran a **multi-dimensional EDA** across category, region, channel, gender, age group, and customer segment
+- 🔥 Built a **correlation heatmap**, **pair plot**, and **box plot** to explore relationships and outliers in the numeric features
+- 🤖 Trained a **Linear Regression** model to predict `sales_amount` and evaluated it with R²
+- 💡 Converted every finding into a clear, actionable business insight
+
 ---
 
 ## 📁 Repository Structure
 
 ```
-├── retail_sales_dataset.csv                        # Raw dataset (120,000 rows, 17 columns)
-├── Retail_Sales_Analysis_and_Prediction.ipynb      # Full analysis notebook
+Retail-Sales-Analysis-and-Prediction/
+│
+├── retail_sales_dataset.xls                                    # Raw dataset (120,000 rows, 17 columns)
+├── Retail Sales Analysis and Prediction_pythone_project.csv.ipynb   # Full analysis notebook
+├── images/
+│   ├── correlation-heatmap.png
+│   ├── actual-vs-predicted.png
+│   ├── box-plot.png
+│   └── pair-plot.png
 └── README.md
 ```
 
@@ -40,7 +103,8 @@ Retail businesses generate massive volumes of transactional data every day. The 
 | Price Range | $5.41 – $2,467.55 |
 | Features | 17 columns |
 
-### Columns
+<details>
+<summary><strong>📋 Full column reference (click to expand)</strong></summary>
 
 | Column | Type | Description |
 |---|---|---|
@@ -62,6 +126,8 @@ Retail businesses generate massive volumes of transactional data every day. The 
 | `sales_channel` | string | Online / In-Store / Mobile App |
 | `region` | string | North / South / East / West / Central |
 
+</details>
+
 ---
 
 ## 🔍 Analysis Workflow
@@ -76,6 +142,21 @@ Retail businesses generate massive volumes of transactional data every day. The 
 - Category, region, channel, gender, age group, and segment breakdowns
 - Top products and top customers by total spend
 - Discount impact analysis across purchase volumes
+
+**Correlation Heatmap**
+
+![Correlation Heatmap](images/correlation-heatmap.png)
+*`quantity` and `unit_price` each correlate moderately with `sales_amount` (0.64), while `discount_pct` shows a slight negative correlation (-0.09) — confirming discounts aren't a major revenue driver.*
+
+**Pair Plot of Numeric Features**
+
+![Pair Plot](images/pair-plot.png)
+*Visualizing the pairwise relationships between `quantity`, `unit_price`, `discount_pct`, and `sales_amount` — the diagonal "fan" pattern in the `unit_price` vs. `sales_amount` plot reflects the multiplicative relationship between price, quantity, and discount.*
+
+**Box Plot of Sales Amount**
+
+![Box Plot](images/box-plot.png)
+*The distribution of `sales_amount` is right-skewed with a long tail of high-value transactions — expected in retail, where most purchases are low-to-mid value with occasional large basket sizes.*
 
 ### 3. Predictive Modeling
 - Built a **Linear Regression** model to predict `sales_amount`
@@ -184,6 +265,47 @@ Retail businesses generate massive volumes of transactional data every day. The 
 - Metric: **R² Score** (coefficient of determination)
 - Visual: Actual vs. Predicted scatter plot with reference diagonal line
 
+<details>
+<summary><strong>🐍 Model code (click to expand)</strong></summary>
+
+```python
+# Define the feature matrix X and target vector y for prediction
+features = ['quantity', 'unit_price', 'discount_pct']
+X = df[features]
+y = df['sales_amount']
+
+# Split the data into training and test sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Create and train the linear regression model
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# Make predictions on the test set
+y_pred = model.predict(X_test)
+
+# Calculate the R2 score as a measure of prediction accuracy
+accuracy = r2_score(y_test, y_pred)
+print(f"R2 Score for predicting sales_amount: {accuracy:.3f}")
+
+# Plot the predicted vs actual sales amounts
+plt.figure(figsize=(8, 6))
+plt.scatter(y_test, y_pred, alpha=0.7)
+plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], '--r')
+plt.xlabel('Actual Sales Amount')
+plt.ylabel('Predicted Sales Amount')
+plt.title('Actual vs Predicted Sales Amount')
+plt.tight_layout()
+plt.show()
+```
+
+</details>
+
+**Result:**
+
+![Actual vs Predicted](images/actual-vs-predicted.png)
+*Actual vs. Predicted sales amount, with the red dashed line representing a perfect prediction. The model captures the general upward trend but underpredicts at the high end — a sign that a purely linear model can't fully capture how `quantity`, `unit_price`, and `discount_pct` interact.*
+
 **Why Linear Regression as a baseline?**
 The core relationship `sales_amount ≈ quantity × unit_price × (1 - discount/100)` is fundamentally mathematical, making linear regression an excellent interpretable baseline before exploring more complex models.
 
@@ -213,8 +335,8 @@ The core relationship `sales_amount ≈ quantity × unit_price × (1 - discount/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/retail-sales-analysis.git
-   cd retail-sales-analysis
+   git clone https://github.com/maka971/Retail-Sales-Analysis-and-Prediction.git
+   cd Retail-Sales-Analysis-and-Prediction
    ```
 
 2. **Install dependencies**
@@ -224,7 +346,7 @@ The core relationship `sales_amount ≈ quantity × unit_price × (1 - discount/
 
 3. **Launch the notebook**
    ```bash
-   jupyter notebook Retail_Sales_Analysis_and_Prediction.ipynb
+   jupyter notebook "Retail Sales Analysis and Prediction_pythone_project.csv.ipynb"
    ```
 
 ---
@@ -241,8 +363,21 @@ The core relationship `sales_amount ≈ quantity × unit_price × (1 - discount/
 
 ---
 
-## 👤 Author
+## 👨‍💻 About the Author
 
-**Your Name**
+**Sulah Mutyaba**
+Data Analyst | Power BI Developer | SQL | Python
+
 - 📧 sulahmutyaba@gmail.com
-I'm OPEN FOR A JOB
+- 💼 LinkedIn: [linkedin.com/in/mutyaba-sulah-525510203](https://www.linkedin.com/in/mutyaba-sulah-525510203/)
+- 💻 GitHub: [github.com/maka971](https://github.com/maka971)
+
+*Open to Data Analyst, BI Analyst, and related opportunities.*
+
+---
+
+<div align="center">
+
+*Built as part of a data analytics portfolio. Open to feedback and collaboration.*
+
+</div>
